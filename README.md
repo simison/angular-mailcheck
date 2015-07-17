@@ -17,8 +17,10 @@ Then add a `<script>` to your `index.html`:
 
 Then add `mailcheck` as a dependency for your app:
 
+The module requires jQuery to work.
+
 ```javascript
-angular.module('myApp', ['mailcheck']);
+angular.module('myApp', ['angular-mailcheck']);
 ```
 
 ## Usage
@@ -27,9 +29,13 @@ angular.module('myApp', ['mailcheck']);
 <input type="email" mailcheck>
 ```
 
-Directive will insert `<div class="help-block mailcheck"></div>` after the input tag and toggle it visible with ng-show if mailchec.js has a suggestion.
+Directive will insert `<div class="help-block mailcheck"></div>` after the input tag and toggle it visible with ng-show if Mailcheck has a suggestion.
 
 `help-block` class happens to be in use at [Bootstrap](http://getbootstrap.com/css/#forms) so it should look pretty neat out of box.
+
+## Develop
+
+Minify js by running `gulp` (after installing stuff with `npm install`, that is).
 
 ## License
 
