@@ -21,6 +21,16 @@ Then add `mailcheck` as a dependency for your app:
 angular.module('myApp', ['mailcheck']);
 ```
 
+## Usage
+
+```html
+<input type="email" mailcheck>
+```
+
+Directive will insert `<div class="help-block mailcheck"></div>` after the input tag and toggle it visible with ng-show if mailchec.js has a suggestion.
+
+`help-block` class happens to be in use at [Bootstrap](http://getbootstrap.com/css/#forms) so it should look pretty neat out of box.
+
 ## License
 
 The MIT License
