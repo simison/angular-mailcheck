@@ -21,7 +21,11 @@
     "UI"
   ],
   "main": ["./angular-mailcheck.js"],
-  "ignore": [],
+  "ignore": [
+    "gulpfile.js",
+    "*.md",
+    "package.json"
+  ],
   "dependencies": {
     "jquery": "*",
     "angular": "1.x",
