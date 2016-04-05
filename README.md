@@ -29,6 +29,24 @@ angular.module('myApp', ['angular-mailcheck']);
 <input type="email" mailcheck>
 ```
 
+You can add suggestion and nope texts as strings:
+
+```html
+<input type="email" mailcheck mailcheck-suggestion-text="'Did you mean:'" mailcheck-nope-text="'Nope'">
+```
+
+...or as scope variables:
+
+```html
+<input type="email" mailcheck mailcheck-suggestion-text="suggestionText" mailcheck-nope-text="nopeText">
+```
+
+...or use [Angular-Translate](https://angular-translate.github.io/):
+
+```html
+<input type="email" mailcheck mailcheck-suggestion-text="'EMAIL_SUGGESTION_OFFER' | translate" mailcheck-nope-text="'EMAIL_SUGGESTION_PASS' | translate">
+```
+
 Directive will insert `<div class="help-block mailcheck"></div>` after the input tag and toggle it visible with ng-show if Mailcheck has a suggestion.
 
 `help-block` class happens to be in use at [Bootstrap](http://getbootstrap.com/css/#forms) so it should look pretty neat out of box.
