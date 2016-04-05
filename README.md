@@ -27,11 +27,23 @@ angular.module('myApp', ['angular-mailcheck']);
 
 ```html
 <input type="email" mailcheck>
+```
 
-<!-- You can add suggestion and nope text -->
+You can add suggestion and nope texts as strings:
+
+```
+<input type="email" mailcheck mailcheck-suggestion-text="'Did you mean:'" mailcheck-nope-text="'Nope'">
+```
+
+...or as scope variables:
+
+```
 <input type="email" mailcheck mailcheck-suggestion-text="suggestionText" mailcheck-nope-text="nopeText">
+```
 
-<!-- When using angular-translate -->
+...or use [Angular-Translate](https://angular-translate.github.io/):
+
+```
 <input type="email" mailcheck mailcheck-suggestion-text="'EMAIL_SUGGESTION_OFFER' | translate" mailcheck-nope-text="'EMAIL_SUGGESTION_PASS' | translate">
 ```
 
