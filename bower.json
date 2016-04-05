@@ -1,7 +1,7 @@
 {
   "name": "angular-mailcheck",
   "description": "Angular wrapper for Mailcheck.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "authors": [
     "Mikael Korpela <mikael@ihminen.org> (http://www.mikaelkorpela.fi)"
   ],
