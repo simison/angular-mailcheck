@@ -17,6 +17,10 @@
     return {
       restrict: 'A',
       replace: false,
+      scope: {
+        suggestionText: '=?mailcheckSuggestionText',
+        nopeText: '=?mailcheckNopeText'
+      },
       link: function(scope, el, attrs) {
 
         // Limit to input element of specific types
@@ -28,11 +32,24 @@
           throw new Error('Invalid input type for angular-mailcheck: ' + attrs.type);
         }
 
+        if (!scope.suggestionText) {
+          scope.suggestionText = "Did you mean";
+        }
+
+        if (!scope.nopeText) {
+          scope.nopeText = "Nope.";
+        }
+
         scope.suggestion = false;
         scope.bugmenot = false;
 
         // Compiled template
-        var template = $compile('<div class="help-block mailcheck" ng-show="suggestion && !bugmenot">Did you mean <a ng-bind="suggestion" ng-click="useSuggestion()"></a>? <a ng-click="suggestion=false;bugmenot=true">Nope.</a></div>')(scope);
+        var template = $compile('' +
+          '<div class="help-block mailcheck" ng-show="suggestion && !bugmenot">' +
+            '{{ suggestionText }} ' +
+            '<a ng-bind="suggestion" ng-click="useSuggestion()"></a>? ' +
+            '<a ng-click="suggestion=false; bugmenot=true">{{ nopeText }}</a>' +
+          '</div>')(scope);
         el.after(template);
 
         el.bind('input', function() {
