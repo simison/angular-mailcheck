@@ -29,6 +29,14 @@ angular.module('myApp', ['angular-mailcheck']);
 <input type="email" mailcheck>
 ```
 
+... or add on parent element of input
+
+```html
+<div mailcheck>
+  <input type="email">
+</div>
+```
+
 You can add suggestion and nope texts as strings:
 
 ```html

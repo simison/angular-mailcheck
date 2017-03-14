@@ -25,10 +25,12 @@
 
         // Limit to input element of specific types
         var inputTypes = /text|email/i;
+        var inputElm = el;
+
         if(el[0].nodeName !== 'INPUT') {
-          throw new Error('angular-mailcheck is limited to input elements');
+          inputElm = el.find('input');
         }
-        if(!inputTypes.test(attrs.type)) {
+        if(!inputTypes.test(inputElm.attr('type'))) {
           throw new Error('Invalid input type for angular-mailcheck: ' + attrs.type);
         }
 
@@ -50,13 +52,14 @@
             '<a ng-bind="suggestion" ng-click="useSuggestion()"></a>? ' +
             '<a ng-click="suggestion=false; bugmenot=true">{{ nopeText }}</a>' +
           '</div>')(scope);
+
         el.after(template);
 
-        el.bind('input', function() {
+        inputElm.bind('input', function() {
             scope.suggestion = false;
           })
           .bind('blur', function() {
-            el.mailcheck({
+            inputElm.mailcheck({
               suggested: function(element, suggestion) {
                 scope.suggestion = suggestion.full;
                 scope.$apply();
@@ -68,7 +71,7 @@
           });
 
         scope.useSuggestion = function() {
-          el.val(scope.suggestion);
+          inputElm.val(scope.suggestion);
           scope.suggestion = false;
         };
 
