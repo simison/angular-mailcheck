@@ -65,7 +65,7 @@
               empty: function(element) {
                 scope.suggestion = false;
               }
-            }
+            };
             if (scope.domains) {
               options.domains = scope.domains;
             }
