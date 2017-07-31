@@ -29,9 +29,11 @@
   "main": [
     "./angular-mailcheck.js"
   ],
-  "dependencies": {
+  "peerDependency": {
     "angular": "1.x",
-    "jquery": "*",
+    "jquery": "*"
+  },
+  "dependencies": {
     "mailcheck": "1.1.x"
   },
   "devDependencies": {
