@@ -19,7 +19,8 @@
       replace: false,
       scope: {
         suggestionText: '=?mailcheckSuggestionText',
-        nopeText: '=?mailcheckNopeText'
+        nopeText: '=?mailcheckNopeText',
+        domains: '=?mailcheckDomains'
       },
       link: function(scope, el, attrs) {
 
@@ -56,7 +57,7 @@
             scope.suggestion = false;
           })
           .bind('blur', function() {
-            el.mailcheck({
+            var options = {
               suggested: function(element, suggestion) {
                 scope.suggestion = suggestion.full;
                 scope.$apply();
@@ -64,7 +65,11 @@
               empty: function(element) {
                 scope.suggestion = false;
               }
-            });
+            };
+            if (scope.domains) {
+              options.domains = scope.domains;
+            }
+            el.mailcheck(options);
           });
 
         scope.useSuggestion = function() {
