@@ -55,6 +55,22 @@ You can add suggestion and nope texts as strings:
 <input type="email" mailcheck mailcheck-suggestion-text="'EMAIL_SUGGESTION_OFFER' | translate" mailcheck-nope-text="'EMAIL_SUGGESTION_PASS' | translate">
 ```
 
+You can pass MailCheck.js options object:
+
+```html
+<input type="email" mailcheck="{ domains: ['example.com'] }">
+```
+
+To extend (instead of replacing) MailCheck's default `domains`, `secondLevelDomains`, `topLevelDomains` lists, use `defaultDomains`, `defaultSecondLevelDomains`, `defaultTopLevelDomains`:
+
+```html
+<input type="email" mailcheck="{
+  defaultDomains: ['example.com'],
+  defaultSecondLevelDomains: ['example'],
+  defaultTopLevelDomains: ['fi']
+}">
+```
+
 Directive will insert `<div class="help-block mailcheck"></div>` after the input tag and toggle it visible with ng-show if Mailcheck has a suggestion.
 
 `help-block` class happens to be in use at [Bootstrap](http://getbootstrap.com/css/#forms) so it should look pretty neat out of box.
