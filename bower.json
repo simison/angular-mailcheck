@@ -19,14 +19,13 @@
     "UX",
     "UI"
   ],
-  "main": ["./angular-mailcheck.js"],
+  "main": "angular-mailcheck.js",
   "ignore": [
     "gulpfile.js",
     "*.md",
     "package.json"
   ],
   "dependencies": {
-    "jquery": "*",
     "angular": "1.x",
     "mailcheck": "1.1.x"
   },
