@@ -27,19 +27,24 @@
         var inputTypes = /text|email/i;
         var inputElm = el;
 
-        if(el[0].nodeName !== 'INPUT') {
+        if (el[0].nodeName !== 'INPUT') {
           inputElm = el.find('input');
+
+          if (!inputElm || !inputElm.length) {
+            throw new Error('Could not find text or email input element.');
+          }
         }
-        if(!inputTypes.test(inputElm.attr('type'))) {
+
+        if (!inputTypes.test(inputElm.attr('type'))) {
           throw new Error('Invalid input type for angular-mailcheck: ' + attrs.type);
         }
 
         if (!scope.suggestionText) {
-          scope.suggestionText = "Did you mean";
+          scope.suggestionText = 'Did you mean';
         }
 
         if (!scope.nopeText) {
-          scope.nopeText = "Nope.";
+          scope.nopeText = 'Nope.';
         }
 
         scope.suggestion = false;
@@ -55,7 +60,8 @@
 
         el.after(template);
 
-        inputElm.bind('input', function() {
+        inputElm
+          .bind('input', function() {
             scope.suggestion = false;
           })
           .bind('blur', function() {
