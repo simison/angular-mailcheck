@@ -87,8 +87,7 @@
         var templateHtml =
           '<div class="help-block mailcheck" ng-show="suggestion && !bugmenot">' +
             '{{ suggestionText }} ' +
-            '<a ng-bind="suggestion" ng-click="useSuggestion()"></a>? ' +
-            '<a ng-click="suggestion=false; bugmenot=true">{{ nopeText }}</a>' +
+            '<strong ng-bind="suggestion" style="font-weight:bold"></strong>? ' +
           '</div>';
 
         // Compiled template
