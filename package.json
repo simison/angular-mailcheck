@@ -35,5 +35,9 @@
     "gulp-rename": "~1.2.2",
     "gulp-uglify": "~3.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "resolutions": {
+    "minimatch": ">=3.0.2",
+    "lodash": ">=4.17.12"
+  }
 }
