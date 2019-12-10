@@ -1,0 +1,15 @@
+version: 2.1
+
+orbs:
+  micro-app: wealthsimple/micro-app@dev:master
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - micro-app/checkout:
+          name: checkout
+      - micro-app/security:
+          name: security
+          requires:
+            - checkout
