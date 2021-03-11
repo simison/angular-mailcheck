@@ -38,6 +38,6 @@
   "license": "MIT",
   "resolutions": {
     "minimatch": ">=3.0.2",
-    "lodash": ">=4.17.12"
+    "lodash": ">=4.17.21"
   }
 }

@@ -8,8 +8,10 @@ workflows:
   build-and-deploy:
     jobs:
       - micro-app/checkout:
+          context: wealthsimple
           name: checkout
       - micro-app/security:
+          context: wealthsimple
           name: security
           requires:
             - checkout

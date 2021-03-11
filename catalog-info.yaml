@@ -1,0 +1,11 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: angular-mailcheck
+  description: An Angular wrapper for Mailcheck.js
+  tags:
+    - javascript
+spec:
+  type: library
+  lifecycle: production
