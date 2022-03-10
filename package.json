@@ -1,5 +1,5 @@
 {
-  "name": "angular-mailcheck",
+  "name": "@wealthsimple/angular-mailcheck",
   "description": "Angular wrapper for Mailcheck.js",
   "version": "0.2.0",
   "private": false,
