@@ -1,5 +1,7 @@
 # Angular Mailcheck
 
+> This is @wealthsimple's private, customized fork of https://www.npmjs.com/package/angular-mailcheck. We publish it to our internal private Nexus package registry under the name `@wealthsimple/angular-mailcheck`.
+
 Angular wrapper for [Mailcheck.js](https://github.com/mailcheck/mailcheck/)
 
 ## Install
@@ -20,55 +22,73 @@ Then add `mailcheck` as a dependency for your app:
 The module requires jQuery to work.
 
 ```javascript
-angular.module('myApp', ['angular-mailcheck']);
+angular.module("myApp", ["angular-mailcheck"]);
 ```
 
 ## Usage
 
 ```html
-<input type="email" mailcheck>
+<input type="email" mailcheck />
 ```
 
 ... or add on parent element of input
 
 ```html
 <div mailcheck>
-  <input type="email">
+  <input type="email" />
 </div>
 ```
 
 You can add suggestion and nope texts as strings:
 
 ```html
-<input type="email" mailcheck mailcheck-suggestion-text="'Did you mean:'" mailcheck-nope-text="'Nope'">
+<input
+  type="email"
+  mailcheck
+  mailcheck-suggestion-text="'Did you mean:'"
+  mailcheck-nope-text="'Nope'"
+/>
 ```
 
 ...or as scope variables:
 
 ```html
-<input type="email" mailcheck mailcheck-suggestion-text="suggestionText" mailcheck-nope-text="nopeText">
+<input
+  type="email"
+  mailcheck
+  mailcheck-suggestion-text="suggestionText"
+  mailcheck-nope-text="nopeText"
+/>
 ```
 
 ...or use [Angular-Translate](https://angular-translate.github.io/):
 
 ```html
-<input type="email" mailcheck mailcheck-suggestion-text="'EMAIL_SUGGESTION_OFFER' | translate" mailcheck-nope-text="'EMAIL_SUGGESTION_PASS' | translate">
+<input
+  type="email"
+  mailcheck
+  mailcheck-suggestion-text="'EMAIL_SUGGESTION_OFFER' | translate"
+  mailcheck-nope-text="'EMAIL_SUGGESTION_PASS' | translate"
+/>
 ```
 
 You can pass MailCheck.js options object:
 
 ```html
-<input type="email" mailcheck="{ domains: ['example.com'] }">
+<input type="email" mailcheck="{ domains: ['example.com'] }" />
 ```
 
 To extend (instead of replacing) MailCheck's default `domains`, `secondLevelDomains`, `topLevelDomains` lists, use `defaultDomains`, `defaultSecondLevelDomains`, `defaultTopLevelDomains`:
 
 ```html
-<input type="email" mailcheck="{
+<input
+  type="email"
+  mailcheck="{
   defaultDomains: ['example.com'],
   defaultSecondLevelDomains: ['example'],
   defaultTopLevelDomains: ['fi']
-}">
+}"
+/>
 ```
 
 Directive will insert `<div class="help-block mailcheck"></div>` after the input tag and toggle it visible with ng-show if Mailcheck has a suggestion.

@@ -31,13 +31,10 @@
     "angular": "1.x"
   },
   "devDependencies": {
+    "@wealthsimple/audit-known-issues": "^1.7.2",
     "gulp": "~3.9.1",
     "gulp-rename": "~1.2.2",
     "gulp-uglify": "~3.0.0"
   },
-  "license": "MIT",
-  "resolutions": {
-    "minimatch": ">=3.0.2",
-    "lodash": ">=4.17.21"
-  }
+  "license": "MIT"
 }
