@@ -1,0 +1,106 @@
+name: Default
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - "**"
+
+jobs:
+  Checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install Dependencies
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.dependencies.run()
+          nexus_npm_token: ${{ secrets.NEXUS_NPM_DEV_TOKEN }}
+          nexus_npm_url: ${{ secrets.NEXUS_NPM_URL }}
+      - name: Lint
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.lint.run()
+      - name: Check Types
+        run: yarn check_types
+      - name: Security
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.security.run()
+      - name: Shell Check
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: await toolbox.shellcheck.run();
+
+  PublishBranchPackages:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
+    needs: [Checks]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.WOLFBOT_GITHUB_ACTIONS_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install Dependencies
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.dependencies.run()
+          nexus_npm_token: ${{ secrets.NEXUS_NPM_DEV_TOKEN }}
+          nexus_npm_url: ${{ secrets.NEXUS_NPM_URL }}
+      - name: Build
+        run: yarn build
+      - name: Publish Updated Packages
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.publishPackages.run()
+          nexus_npm_token: ${{ secrets.NEXUS_NPM_WRITE_TOKEN }}
+          nexus_npm_url: ${{ secrets.NEXUS_NPM_URL }}
+          github_username: ${{ secrets.DEVTOOLS_GITHUB_USERNAME }}
+          github_api_token: ${{ secrets.WOLFBOT_GITHUB_ACTIONS_TOKEN }}
+
+  PublishPackages:
+    runs-on: ubuntu-latest
+    needs: [Checks, Test]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.WOLFBOT_GITHUB_ACTIONS_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install Dependencies
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.dependencies.run()
+          nexus_npm_token: ${{ secrets.NEXUS_NPM_DEV_TOKEN }}
+          nexus_npm_url: ${{ secrets.NEXUS_NPM_URL }}
+      - name: Build
+        run: yarn build
+      - name: Publish Updated Packages
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.javascript.publishPackages.run()
+          nexus_npm_token: ${{ secrets.NEXUS_NPM_WRITE_TOKEN }}
+          nexus_npm_url: ${{ secrets.NEXUS_NPM_URL }}
+          github_username: ${{ secrets.DEVTOOLS_GITHUB_USERNAME }}
+          github_api_token: ${{ secrets.WOLFBOT_GITHUB_ACTIONS_TOKEN }}
+      - name: Notify slack on failure
+        if: failure()
+        uses: wealthsimple/toolbox-script@v1
+        with:
+          script: toolbox.slack.run()
+          slack_token: ${{ secrets.WOLFBOT_DEV_SLACK_TOKEN }}
+          slack_channel_id: "C01S10W3F63" # feplat-alerts
+          slack_template: failed
