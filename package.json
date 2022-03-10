@@ -2,31 +2,23 @@
   "name": "@wealthsimple/angular-mailcheck",
   "description": "Angular wrapper for Mailcheck.js",
   "version": "0.2.0",
-  "private": false,
-  "homepage": "https://github.com/simison/angular-mailcheck",
+  "homepage": "https://github.com/wealthsimple/angular-mailcheck",
   "author": "Mikael Korpela <mikael@ihminen.org> (http://www.mikaelkorpela.fi/)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/simison/angular-mailcheck.git"
-  },
-  "bugs": {
-    "url": "https://github.com/simison/angular-mailcheck/issues"
-  },
-  "tags": [
-    "angularjs",
-    "javascript",
-    "directive",
-    "email",
-    "validator",
-    "interface",
-    "UX",
-    "UI",
-    "mailcheck"
-  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"TODO: no tests specified\"",
+    "lint": "echo \"TODO: linter not configured\"",
+    "check_types": "echo \"TODO: TypeScript not configured\"",
+    "security": "yarn audit-known-issues",
+    "flightcheck": "yarn lint && yarn check_types && yarn test"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.iad.w10external.com/repository/npm-private"
   },
   "main": "angular-mailcheck.js",
+  "files": [
+    "angular-mailcheck.js",
+    "angular-mailcheck.min.js"
+  ],
   "peerDependency": {
     "angular": "1.x"
   },
